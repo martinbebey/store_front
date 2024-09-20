@@ -23,10 +23,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.developer.storefront.R
+import com.developer.storefront.navigation.Screen
 
 @Composable
-fun TopBarView(){
+fun TopBarView(
+    navController: NavController
+){
 
     TopAppBar(
         title = {
@@ -37,7 +41,9 @@ fun TopBarView(){
             ){
                 HeaderView()
 
-                TextButton(onClick = { /*TODO*/ }) {
+                TextButton(onClick = {
+                    navController.navigate(Screen.CartPage.route)
+                }) {
                     Icon(
                         imageVector = Icons.Default.ShoppingCart,
                         contentDescription = "Go to cart"

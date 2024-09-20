@@ -17,14 +17,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.ActivityNavigator
+import androidx.navigation.NavController
 import com.developer.storefront.model.ListingViewState
 import com.developer.storefront.model.Product
 import com.developer.storefront.viewmodel.ListingPageViewModel
 
 @Composable
 fun ListingPageView(
-    modifier: Modifier = Modifier,
     navigateToDetailScreen: (Product) -> Unit,
+    navController: NavController,
     listingViewState: ListingViewState
 ) {
 
@@ -45,7 +47,7 @@ fun ListingPageView(
 
                 Scaffold(
                     topBar = {
-                        TopBarView()
+                        TopBarView(navController = navController)
                     },
                     scaffoldState = scaffoldState,
                 ) {

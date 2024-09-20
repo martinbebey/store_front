@@ -43,7 +43,7 @@ fun HomePageView(
 
     Scaffold(
         topBar = {
-            TopBarView()
+            TopBarView(navController = navController)
         },
         scaffoldState = scaffoldState,
     ) {
