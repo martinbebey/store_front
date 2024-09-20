@@ -33,7 +33,7 @@ fun StoreFrontNavigation(
         startDestination = Screen.HomePage.route,
     ){
         composable(route = Screen.HomePage.route){
-            HomePageView(navController = navController)
+            HomePageView(navController = navController, cartPageViewModel = cartPageViewModel)
         }
 
         composable(route = Screen.ListingPage.route){
@@ -43,13 +43,14 @@ fun StoreFrontNavigation(
                 navigateToDetailScreen = {
                     navController.currentBackStackEntry?.savedStateHandle?.set("product", it)
                     navController.navigate(Screen.ProductDescriptionPage.route)
-                }
+                },
+                cartPageViewModel = cartPageViewModel
             )
         }
 
         composable(route = Screen.ProductDescriptionPage.route){
             val product = navController.previousBackStackEntry?.savedStateHandle?.get<Product>("product")?: Product("", "", "", "", "", "")
-            ProductDescriptionPageView(product = product, navController = navController, viewModel = productDescriptionPageViewModel)
+            ProductDescriptionPageView(product = product, navController = navController, viewModel = productDescriptionPageViewModel, cartPageViewModel = cartPageViewModel)
         }
 
         composable(route = Screen.CartPage.route){

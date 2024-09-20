@@ -33,13 +33,15 @@ import coil.compose.rememberAsyncImagePainter
 import com.developer.storefront.R
 import com.developer.storefront.model.Product
 import com.developer.storefront.navigation.Screen
+import com.developer.storefront.viewmodel.CartPageViewModel
 import com.developer.storefront.viewmodel.ProductDescriptionPageViewModel
 
 @Composable
 fun ProductDescriptionPageView(
     product: Product,
     navController: NavController,
-    viewModel: ProductDescriptionPageViewModel
+    viewModel: ProductDescriptionPageViewModel,
+    cartPageViewModel: CartPageViewModel
 ){
 
     val scrollState = rememberScrollState()
@@ -47,7 +49,7 @@ fun ProductDescriptionPageView(
 
     Scaffold(
         topBar = {
-            TopBarView(navController = navController)
+            TopBarView(navController = navController, cartPageViewModel = cartPageViewModel)
         },
         scaffoldState = scaffoldState,
     ) {

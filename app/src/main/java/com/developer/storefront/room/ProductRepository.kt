@@ -13,6 +13,8 @@ class ProductRepository(
 
     fun getAllCartItems(): Flow<List<Product>> = productDao.getAllCartItems()
 
+    fun getCartItemsCount(): Int = productDao.getCartItemsCount()
+
     fun getAProduct(id: Int): Flow<Product> {
         return productDao.getACartItem(id)
     }

@@ -28,11 +28,13 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.developer.storefront.R
 import com.developer.storefront.model.Product
+import com.developer.storefront.viewmodel.CartPageViewModel
 
 @Composable
 fun CartItemView(
     product: Product,
-    onDeleteClick: () -> Unit
+    onDeleteClick: () -> Unit,
+    viewModel: CartPageViewModel
 ) {
 
     Column {
@@ -66,7 +68,7 @@ fun CartItemView(
                 Row {
 
                     IconButton(onClick = {
-                        //TODO
+                        viewModel.updateACartItemMinus(product)
                     }) {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_minus),
@@ -79,7 +81,9 @@ fun CartItemView(
                         color = Color.Black
                     )
 
-                    IconButton(onClick = { /*TODO*/ }) {
+                    IconButton(onClick = {
+                        viewModel.updateACartItemPlus(product)
+                    }) {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_plus),
                             contentDescription = "plus"

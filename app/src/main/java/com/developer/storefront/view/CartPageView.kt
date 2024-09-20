@@ -37,10 +37,11 @@ fun CartPageView(
 ) {
 
     val scaffoldState = rememberScaffoldState()
+//    var subtotal = 0.00f
 
     Scaffold(
         topBar = {
-            TopBarView(navController = navController)
+            TopBarView(navController = navController, cartPageViewModel = viewModel)
         },
         scaffoldState = scaffoldState,
     ) {
@@ -56,16 +57,31 @@ fun CartPageView(
             )
 
             val cartItemsList = viewModel.getAllCartItems.collectAsState(initial = listOf())
+
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
             ) {
-                items(cartItemsList.value, key = { cartItem -> cartItem.id }) { product ->
-                    CartItemView(
-                        product = product,
-                        onDeleteClick = {viewModel.deleteACartItem(product)}
-                    )
-                }
+
+                    items(cartItemsList.value, key = { cartItem -> cartItem.id }) {
+                        product ->
+                        if(cartItemsList.value.size != 0) {
+                            CartItemView(
+                                product = product,
+                                onDeleteClick = { viewModel.deleteACartItem(product) },
+                                viewModel = viewModel
+                            )
+                        }
+                        else{
+                            Column {
+                                Image(
+                                    painter = painterResource(id = R.drawable.empty_cart_placeholder),
+                                    contentDescription = "empty cart place holder to be replaced with column of items"
+                                )
+                            }
+                        }
+                    }
+
 
                 item {
                     Column(
@@ -82,7 +98,10 @@ fun CartPageView(
                                 Icon(
                                     painter = painterResource(id = R.drawable.ic_cart),
                                     contentDescription = "Go to cart",
-                                    modifier = Modifier.width(30.dp).height(30.dp).padding(8.dp)
+                                    modifier = Modifier
+                                        .width(30.dp)
+                                        .height(30.dp)
+                                        .padding(8.dp)
                                 )
 
                                 Text(
@@ -98,7 +117,9 @@ fun CartPageView(
                         Image(
                             painter = painterResource(id = R.drawable.ic_stripe),
                             contentDescription = "stripe logo",
-                            modifier = Modifier.width(250.dp).height(250.dp)
+                            modifier = Modifier
+                                .width(250.dp)
+                                .height(250.dp)
                         )
 
                         BottomPageView()

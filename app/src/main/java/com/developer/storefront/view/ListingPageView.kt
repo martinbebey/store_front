@@ -21,13 +21,15 @@ import androidx.navigation.ActivityNavigator
 import androidx.navigation.NavController
 import com.developer.storefront.model.ListingViewState
 import com.developer.storefront.model.Product
+import com.developer.storefront.viewmodel.CartPageViewModel
 import com.developer.storefront.viewmodel.ListingPageViewModel
 
 @Composable
 fun ListingPageView(
     navigateToDetailScreen: (Product) -> Unit,
     navController: NavController,
-    listingViewState: ListingViewState
+    listingViewState: ListingViewState,
+    cartPageViewModel: CartPageViewModel
 ) {
 
     val scaffoldState = rememberScaffoldState()
@@ -47,7 +49,7 @@ fun ListingPageView(
 
                 Scaffold(
                     topBar = {
-                        TopBarView(navController = navController)
+                        TopBarView(navController = navController, cartPageViewModel = cartPageViewModel)
                     },
                     scaffoldState = scaffoldState,
                 ) {

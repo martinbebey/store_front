@@ -18,6 +18,9 @@ abstract class ProductDao {
     @Query("Select * from `cart-items-table`")
     abstract fun getAllCartItems(): Flow<List<Product>> //flow reactive live stream
 
+    @Query("Select count(*) from `cart-items-table`")
+    abstract fun getCartItemsCount(): Int //flow reactive live stream
+
     @Update
     abstract suspend fun updateACartItem(product: Product)
 

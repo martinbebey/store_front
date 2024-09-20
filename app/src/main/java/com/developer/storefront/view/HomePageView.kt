@@ -31,11 +31,13 @@ import com.developer.storefront.R
 import com.developer.storefront.navigation.Screen
 import com.developer.storefront.navigation.StoreFrontNavigation
 import com.developer.storefront.ui.theme.StoreFrontTheme
+import com.developer.storefront.viewmodel.CartPageViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomePageView(
-    navController: NavHostController
+    navController: NavHostController,
+    cartPageViewModel: CartPageViewModel
 ) {
     val scaffoldState = rememberScaffoldState()
     val scrollState = rememberScrollState()
@@ -43,7 +45,7 @@ fun HomePageView(
 
     Scaffold(
         topBar = {
-            TopBarView(navController = navController)
+            TopBarView(navController = navController, cartPageViewModel = cartPageViewModel)
         },
         scaffoldState = scaffoldState,
     ) {

@@ -29,10 +29,12 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.developer.storefront.R
 import com.developer.storefront.navigation.Screen
+import com.developer.storefront.viewmodel.CartPageViewModel
 
 @Composable
 fun TopBarView(
-    navController: NavController
+    navController: NavController,
+    cartPageViewModel: CartPageViewModel
 ){
 
     TopAppBar(
@@ -59,7 +61,7 @@ fun TopBarView(
                     )
 
                     Text(
-                        text = "4",
+                        text = cartPageViewModel.itemsCount.toString(),
                         color = Color.White
                     )
                 }
