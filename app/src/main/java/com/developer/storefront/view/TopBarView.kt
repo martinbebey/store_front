@@ -7,8 +7,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.Icon
 import androidx.compose.material.TextButton
 import androidx.compose.material.TopAppBar
@@ -21,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -45,13 +48,20 @@ fun TopBarView(
                     navController.navigate(Screen.CartPage.route)
                 }) {
                     Icon(
-                        imageVector = Icons.Default.ShoppingCart,
-                        contentDescription = "Go to cart"
+                        painter = painterResource(id = R.drawable.ic_cart),
+                        contentDescription = "Go to cart",
+                        modifier = Modifier.width(30.dp).height(30.dp)
                     )
 
-                    Text(text = "CART")
+                    Text(
+                        text = "CART",
+                        color = Color.White
+                    )
 
-                    Text(text = "4")
+                    Text(
+                        text = "4",
+                        color = Color.White
+                    )
                 }
             }
         },

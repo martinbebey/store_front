@@ -15,6 +15,7 @@ import com.developer.storefront.view.CartPageView
 import com.developer.storefront.view.HomePageView
 import com.developer.storefront.view.ListingPageView
 import com.developer.storefront.view.ProductDescriptionPageView
+import com.developer.storefront.viewmodel.CartPageViewModel
 import com.developer.storefront.viewmodel.ListingPageViewModel
 import com.developer.storefront.viewmodel.ProductDescriptionPageViewModel
 
@@ -25,6 +26,7 @@ fun StoreFrontNavigation(
     val navController = rememberNavController()
     val listingPageViewModel: ListingPageViewModel = viewModel()
     val productDescriptionPageViewModel: ProductDescriptionPageViewModel = viewModel()
+    val cartPageViewModel: CartPageViewModel = viewModel()
 
     NavHost(
         navController = navController,
@@ -51,7 +53,7 @@ fun StoreFrontNavigation(
         }
 
         composable(route = Screen.CartPage.route){
-            CartPageView()
+            CartPageView(navController = navController, viewModel = cartPageViewModel)
         }
     }
 }
