@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("kotlin-parcelize")
+    id("kotlinx-serialization")
+//    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -53,9 +56,28 @@ dependencies {
 
     val nav_version = "2.7.5"
     val compose_version = "1.6.0-alpha08"
+    val ktor_version = "3.0.0-rc-1"
+
     implementation("androidx.navigation:navigation-compose:$nav_version")
     implementation("androidx.compose.ui:ui:$compose_version")
     implementation("androidx.compose.material:material:$compose_version")
+
+    implementation("io.ktor:ktor-client-android:$ktor_version")
+    implementation("io.ktor:ktor-client-core:$ktor_version")
+    implementation("io.ktor:ktor-client-json:$ktor_version")
+    implementation("io.ktor:ktor-client-serialization:$ktor_version")
+    implementation("io.ktor:ktor-client-logging:$ktor_version")
+    implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
+    implementation("io.ktor:ktor-serialization-kotlinx-xml:$ktor_version")
+    implementation("io.ktor:ktor-serialization-kotlinx-cbor:$ktor_version")
+    implementation("io.ktor:ktor-serialization-kotlinx-protobuf:$ktor_version")
+
+    implementation("io.coil-kt:coil-compose:2.4.0")
+
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2") //compose viewmodel
+    implementation("com.squareup.retrofit2:retrofit:2.9.0") //retrofit network calls
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0") //json -> obj mapping
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

@@ -4,23 +4,46 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.developer.storefront.model.Product
 import com.developer.storefront.view.HomePageView
+import com.developer.storefront.view.ListingPageView
+import com.developer.storefront.view.ProductDescriptionPageView
+import com.developer.storefront.viewmodel.ListingPageViewModel
 
 @Composable
 fun StoreFrontNavigation(
-    navController: NavController = rememberNavController(),
 ){
+
+    val navController = rememberNavController()
+    val listingPageViewModel: ListingPageViewModel = viewModel()
+
     NavHost(
-        navController = navController as NavHostController,
+        navController = navController,
         startDestination = Screen.HomePage.route,
     ){
-        composable(Screen.HomePage.route){
-            HomePageView()
+        composable(route = Screen.HomePage.route){
+            HomePageView(navController = navController)
+        }
+
+        composable(route = Screen.ListingPage.route){
+            ListingPageView(
+                navigateToDetailScreen = {
+                    navController.currentBackStackEntry?.savedStateHandle?.set("product", it)
+                    navController.navigate(Screen.ProductDescriptionPage.route)
+                },
+                listingViewState = listingPageViewModel.listingViewState.value
+            )
+        }
+
+        composable(route = Screen.ProductDescriptionPage.route){
+            val product = navController.previousBackStackEntry?.savedStateHandle?.get<Product>("product")?: Product("", "", "", "", "", "")
+            ProductDescriptionPageView(product = product)
         }
     }
 }

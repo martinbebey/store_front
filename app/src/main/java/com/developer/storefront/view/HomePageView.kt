@@ -25,16 +25,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.developer.storefront.R
+import com.developer.storefront.navigation.Screen
 import com.developer.storefront.navigation.StoreFrontNavigation
 import com.developer.storefront.ui.theme.StoreFrontTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomePageView() {
-
-    val controller: NavController = rememberNavController()
+fun HomePageView(
+    navController: NavHostController
+) {
     val scaffoldState = rememberScaffoldState()
     val scrollState = rememberScrollState()
 
@@ -65,7 +67,9 @@ fun HomePageView() {
 
                 Text(text = "Collect unique baseball cards to showcase your favorite future all-star stats each tournament.")
 
-                Button(onClick = { /*TODO*/ }) {
+                Button(onClick = {
+                    navController.navigate(Screen.ListingPage.route)
+                }) {
                     Text(text = "Shop Now")
                 }
             }
@@ -129,7 +133,9 @@ fun HomePageView() {
 
                 Text(text = "At every event, we take the opportunity to capture photos of all our players attending. We use these photos to create each player's one-of-a-kind personal baseball cards fitted with all their stats for each tournament. Make sure to get your custom card bundles of your favorite player for all the SG events they are in. ")
 
-                Button(onClick = { /*TODO*/ }) {
+                Button(onClick = {
+                    navController.navigate(Screen.ListingPage.route)
+                }) {
                     Text(text = "Shop Now")
                 }
             }
