@@ -16,6 +16,7 @@ import com.developer.storefront.view.HomePageView
 import com.developer.storefront.view.ListingPageView
 import com.developer.storefront.view.ProductDescriptionPageView
 import com.developer.storefront.viewmodel.ListingPageViewModel
+import com.developer.storefront.viewmodel.ProductDescriptionPageViewModel
 
 @Composable
 fun StoreFrontNavigation(
@@ -23,6 +24,7 @@ fun StoreFrontNavigation(
 
     val navController = rememberNavController()
     val listingPageViewModel: ListingPageViewModel = viewModel()
+    val productDescriptionPageViewModel: ProductDescriptionPageViewModel = viewModel()
 
     NavHost(
         navController = navController,
@@ -45,7 +47,7 @@ fun StoreFrontNavigation(
 
         composable(route = Screen.ProductDescriptionPage.route){
             val product = navController.previousBackStackEntry?.savedStateHandle?.get<Product>("product")?: Product("", "", "", "", "", "")
-            ProductDescriptionPageView(product = product, navController = navController)
+            ProductDescriptionPageView(product = product, navController = navController, viewModel = productDescriptionPageViewModel)
         }
 
         composable(route = Screen.CartPage.route){

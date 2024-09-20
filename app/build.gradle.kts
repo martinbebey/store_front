@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("kotlin-parcelize")
     id("kotlinx-serialization")
+    id("kotlin-kapt")
 //    alias(libs.plugins.compose.compiler)
 }
 
@@ -57,6 +58,11 @@ dependencies {
     val nav_version = "2.7.5"
     val compose_version = "1.6.0-alpha08"
     val ktor_version = "3.0.0-rc-1"
+    val room = "2.6.0"
+
+    implementation("androidx.room:room-runtime:$room")
+    implementation("androidx.room:room-ktx:$room")
+    kapt("androidx.room:room-compiler:$room")
 
     implementation("androidx.navigation:navigation-compose:$nav_version")
     implementation("androidx.compose.ui:ui:$compose_version")

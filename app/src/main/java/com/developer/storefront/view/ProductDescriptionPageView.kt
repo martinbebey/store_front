@@ -33,11 +33,13 @@ import coil.compose.rememberAsyncImagePainter
 import com.developer.storefront.R
 import com.developer.storefront.model.Product
 import com.developer.storefront.navigation.Screen
+import com.developer.storefront.viewmodel.ProductDescriptionPageViewModel
 
 @Composable
 fun ProductDescriptionPageView(
     product: Product,
-    navController: NavController
+    navController: NavController,
+    viewModel: ProductDescriptionPageViewModel
 ){
 
     val scrollState = rememberScrollState()
@@ -75,7 +77,7 @@ fun ProductDescriptionPageView(
 
                 )
 
-                Text(text = "Player Name")
+                Text(text = product.category)
 
                 Text(
                     text = "$${product.price}",
@@ -98,7 +100,7 @@ fun ProductDescriptionPageView(
                 Text(text = product.description)
 
                 Button(onClick = {
-                    //TODO
+                    viewModel.addAProduct(product)
                 }) {
                     Text(text = "Add to Cart")
                 }
